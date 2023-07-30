@@ -1,0 +1,65 @@
+
+long GetNewNum(long arr[],int n) {
+    
+    //2*n array to figure out the no of ones in tha position or no fo zeros in that
+    //postio
+    //int containsnegativevalue = false;
+    int maxmsb = -1;
+    int counter[63][2]; //from 0 to 62 63 bits
+    for(int i=0;i<63;i++)
+    {
+        counter[i][0] = 0;
+        counter[i][1] = 0;
+    }
+    
+    for(int i=0;i<n;i++){
+        //finding the most sinificant bit
+        //if(arr[i] < 0)
+            //containsnegativevalue = true;
+        int msb = 0;  //if the is no one then the unit digit zero becomes significant
+        for(int j=62;j>=0;j--){
+            
+            if(arr[i]  & (1L<<j))
+            {
+                msb = j;
+                break;
+            }
+            
+            
+        }
+        
+        if(msb > maxmsb)
+            maxmsb = msb;
+        
+        //populating the counter 2d matrix
+        
+        for(int j=msb;j>=0;j--)
+        {
+            if(arr[i] & (1L<<j))
+                counter[j][1]++;
+            else
+                counter[j][0]++;
+            
+        }
+        
+        
+        
+        
+    }
+    long finalno = 0L;
+    for(int i= maxmsb;i>=0;i--){
+      
+        if(counter[i][1] > counter[i][0] ) //if 0 are more then only mark zeros i.e.
+            finalno += (1L<<i);//do nothing if one are equal to zeros then also one put
+       
+            
+        
+        
+        
+    }
+    
+    //if(containsnegativevalue)
+        //return 0L;
+   // else
+    return finalno;
+}

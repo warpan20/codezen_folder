@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int maxProfit(int *arr,int l)
+{
+ //more sleek approach needed
+    //this can be done by linear traversal
+    //leftmin contains the minimum value upto here and minus the original element will
+    //give the maximum profit for that elements and then we compare it with the max
+    //profit
+    
+    int left[l];//left[0] has no meaning and will not be compared so we don't have to
+    //think about it
+    //required
+    int maxprofit = 0;//we will not take negative profits if
+    //the first no is maximuma all other no are lower then we will not buy a stock
+    left[1] = arr[0];
+    for(int i=1;i<l;i++)
+    {
+        left[i+1] = min(left[i],arr[i]);
+        int maxprofitcurr = arr[i] - left[i];
+        if(maxprofitcurr > maxprofit)
+            maxprofit = maxprofitcurr;
+    }  
+    
+    return maxprofit;
+      
+}

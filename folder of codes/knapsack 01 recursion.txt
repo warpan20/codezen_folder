@@ -1,0 +1,20 @@
+
+int knapsack(int* weights, int* values, int n, int maxWeight){
+  if(maxWeight == 0 || n == -1) //all the wights have been considered
+      return 0; //if no thing is remaining the maximal value whichcan
+    //be obtained from this situation is zero
+  int a = knapsack(weights,values,n-1,maxWeight);//excluding the nth item;
+    
+    if(weights[n]>maxWeight)
+        return a;
+    else
+    {
+        //including the n th weight
+        int b = values[n] + knapsack(weights,values,n-1,maxWeight-weights[n]);
+        return (a>b)?a:b;
+    }
+    
+    return 0;// this will never be used but i gutes prevents compilation error
+   
+
+}

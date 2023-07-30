@@ -1,0 +1,8 @@
+long ResetAllBitsInRange(long num, int left, int right) {
+
+    long range = ((1L<<(right-1))-1) ^ ((1L<<(left)) -1);
+    
+    return num & ~range;
+    
+    
+}

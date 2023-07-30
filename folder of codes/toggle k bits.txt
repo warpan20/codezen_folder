@@ -1,0 +1,7 @@
+int ToggleKBits(int number, int k) {
+	
+    //k bits means form position 0 to k-1 
+    for(int i=0;i<k;i++)
+        number ^= (1<<i);
+	return number;
+}

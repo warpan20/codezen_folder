@@ -1,0 +1,83 @@
+//n = 10^5 so anyway this will not work still i will try to resolve the cases
+
+//I UNDERSTOOD THE PROBLEM WRONG INDEX -1 AND INDEX+1 IS NOT REMOVED BY NUMBER IN THE ARRAY WITH VALUE A[X] + 1 AND A[X] -1 GET REMOVED WHEN A[X] : INTERGER AT INDEX X IS SELECTED.
+
+//ANY WAY THE DP IS NOT POSSIBLE FOR N = 10^15 AND WE ARE NOT CONSIDERING ALL 
+//CASES BY THIS METHOD.
+int solve(int n,vector<int>A){
+ 
+ int dp[n][n]; //dp i j gives the maximum points we can take from i t0 j 
+    //i and j included
+    
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            dp[i][j] = 0;
+    
+    //put soem base cases in the dp
+    for(int i=0;i<n;i++){
+        dp[i][i] = A[i];
+    }
+    
+   
+    
+    //calculate the dp for every subarray and for every subarray ranging from
+    
+    //i to i+length-1 we select every j from i to i+length-1 and see what happens
+    
+    for(int length =2; length <=n;length++){
+        for(int i=0;i<=n-length;i++){
+            for(int j=i;j<=i+length-1;j++){
+                
+                //we write the main recurrance relation here
+                //selction of the jth element resulst in
+                int rlimit = i+length-1;
+                //for j>=i+2  j-2 >= ithen i cannot be selected and j<=i+length-3 then j+1<=i+length-2 canoot be selected
+             if(j-2 >= i && j+2 <=rlimit)
+                dp[i][rlimit] = max(dp[i][rlimit] , A[j] + dp[i][j-2] + dp[j+2][rlimit]);
+              else if (j-2  < i && j+2<=rlimit) //[j-2] should not be in the below satement
+                  //j+2 <= i+length-3
+                  dp[i][rlimit] = max(dp[i][rlimit], A[j] + dp[j+2][rlimit]);
+              else if(j+2 > rlimit && j-2 >= i)//[j+2] should not be in the below statement
+                  // j-2>= i
+                  // j> i+length-3 second last item + 2 beyond last item so wrong
+                  dp[i][rlimit] = max(dp[i][rlimit] , A[j] + dp[i][j-2]);
+              else
+                  dp[i][rlimit] = max(dp[i][rlimit],A[j]);
+                
+                
+                //when A[j] is not chosen and length >=3
+                if(length>=3)
+                {
+                    if(j-1>=i && j+1<=rlimit)
+                    dp[i][rlimit] = max(dp[i][rlimit] ,dp[i][j-1] + dp[j+1][rlimit]);
+                        else if(j == i && j+1<=rlimit)
+                     dp[i][rlimit] = max(dp[i][rlimit], dp[j+1][rlimit]);
+                    else if(j==rlimit && j-1>=i)
+                        dp[i][rlimit] = max(dp[i][rlimit], dp[i][j-1]);
+                        
+                        
+                    }//length if conditon
+            }//j
+        }//i
+        
+    /*    cout<<"for length = "<<length<<endl;
+            
+     //debugger code
+        for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+            cout<<dp[i][j]<<" ";
+     cout<<endl;   
+    }
+           */     
+                //cout<<"testing code"<<endl;
+            }//length
+    
+
+    
+    
+    
+    
+    
+    return dp[0][n-1];
+
+}

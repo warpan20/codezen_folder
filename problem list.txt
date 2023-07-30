@@ -1,0 +1,57 @@
+increasing subsegment, dynamic programming  - https://codeforces.com/problemset/problem/446/A - https://codeforces.com/blog/entry/13036 ; recorder, also refer folder of codes.
+print diagonal , matrices 2d - https://www.youtube.com/watch?v=T8ErAYobcbc ;
+gcd ,number theory = https://www.youtube.com/watch?v=VWOUh4w_zVI
+longest common subsequence , dynamic programming - https://www.youtube.com/watch?v=Qf5R-uYQRPk , folder of codes Recorder.
+0 1 knapsack , dynamic programming - https://www.youtube.com/watch?v=T4bY72lCQac , https://www.geeksforgeeks.org/space-optimized-dp-solution-0-1-knapsack-problem/ (space optimized) , folder of codes.
+print spiral, matrices 2d - https://www.youtube.com/watch?v=siKFOI8PNKM , check time 10:05 for the main code.
+check pallindrome , bit manipulation - https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/(right pointer is not correct here),folder of codes.
+ways to make coin change , dynamic programming - refer folder of codes Recorder.
+sum of lcm, number theory - https://www.geeksforgeeks.org/sum-of-lcm-1-n-lcm-2-n-lcm-3-n-lcm-n-n/ - refer folder of codes.
+edit distance, dynamic programming - my algoexpert copy (2nd) ,Recorder, refer folder of codes. 
+matrix chain multiplication, dynamic programming - https://www.youtube.com/watch?v=GMzVeWpyTN0 , refer folder of codes, folder of pictures,  Recorder.
+min steps to one using DP , dynamic programming - folder of codes, Recorder.
+mixtures , dynamic programming - https://www.youtube.com/watch?v=XHjjIJxnAJY (source 1, not seen it, main source),  https://www.sanfoundry.com/dynamic-programming-solutions-mixtures-problem/ (source 2, not seen it, secondary source) , folder of codes, Recorder.
+set k bits, bit manipulation - https://www.geeksforgeeks.org/set-k-th-bit-given-number/ , folder of codes.
+string maker, dynamic programming - https://github.com/Mehulcoder/Coding-ninjas-competitive/blob/master/DPandbitmasking/Stringmaker.cpp , folder of codes, Recorder.
+tetrahedron, dynamic programming - https://www.youtube.com/watch?v=tb_14w_-mNw , folder of codes, Recorder.
+factorial, numtheory - https://www.geeksforgeeks.org/biginteger-class-in-java/, folder of codes (java, BigInteger class).
+boredom, dynamic programming - https://www.youtube.com/watch?v=vGTzawku3lM (not seen ) , hint video on coding ninja , folder of codes(2 codes), Recorder.
+flipping coins , dynamic programming - https://www.geeksforgeeks.org/maximize-number-0s-flipping-subarray/ ,  https://www.youtube.com/watch?v=86CQq3pKSUw (kedance Algorithm explanation , the one used in source), folder of codes , Recorder.
+painting fences, dynamic programming - https://www.youtube.com/watch?v=ju8vrEAsa3Q , folder of codes, Recorder.
+braille's dilemma, dynamic programming - https://github.com/Mehulcoder/Coding-ninjas-competitive/blob/master/DPandbitmasking/Diliema.cpp (mehulcoder code just kept the link here , avoid it) , folder of codes, folder of pictures,  hint video coding ninja, Recorder. 
+cout ror , dynamic programming - https://www.geeksforgeeks.org/count-gfg-subsequences-given-string/ (primary source), https://www.geeksforgeeks.org/find-number-times-string-occurs-given-string/, foder of codes, Recorder.
+rotate by k, bit manipulation - https://www.techiedelight.com/circular-shift-integer-k-positions/
+set bits , coding ninja solutions,folder of codes.
+reset all bits , bit manipulation - folder of codes, Recorder.
+consecutive numbers, bit manipulation - https://www.geeksforgeeks.org/find-smallest-number-n-n-xor-n1-equals-given-k/ , folder of codes, Recorder.
+toggle k bits , bit manipulation - https://codezen.codingninjas.com/practice/10336/2149/toggle-k-bits (not seen it ) , folder of codes, Recorder.
+flip given bits , bit manipulation - folder of codes.
+reset in range , bit manipulation - https://stackoverflow.com/questions/14103738/what-does-1l-mean/14103746(extra info),https://www.quora.com/Whats-the-difference-between-int-type-and-long-int-type-in-C++#:~:text=The%20difference%20is%20that%20an,a%20long%2C%20and%20a%20long(extra info),  folder of codes(2 codes) , Recorder.
+maximum xor, bit manipulation - coding ninja solutions , forder of codes, Recorder.
+unique pair using bits , bit manipulation - https://www.geeksforgeeks.org/find-unique-pair-array-pairs-numbers/ ,folder of codes, Recorder.
+print matrix , matrix(2d) - folder of codes, Recorder.
+idempotent matrix , matrix(2d) - folder of codes, Recorder.
+minimum sum in matrix - folder of codes, coding ninja solutions(their sol not mine) ,Recorder.
+reverse alternate nodes , problem of the day - https://www.geeksforgeeks.org/given-linked-list-reverse-alternate-nodes-append-end/
+smallest subarray with required sum , array - https://www.geeksforgeeks.org/smallest-subarray-with-sum-k-from-an-array/ (does not work for negative integers, also not the exact problem), https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/(primary source), folder of codes, Recorder.
+arrow pattern , pattern - folder of codes , Recorder.
+rectangular numbers ,pattern - folder of codes, Recorder.
+print the pattern, pattern - folder of codes, Recorder.
+no adjacent same, bit manipulation - https://www.geeksforgeeks.org/check-number-two-adjacent-set-bits/, folder of codes, Recorder.
+sort by kth bit, bit manipulation - https://www.geeksforgeeks.org/queries-for-number-of-array-elements-in-a-range-with-kth-bit-set/(not seen it) , folder of codes , Recorder.
+rotate by k, bit manipulation - https://www.techiedelight.com/circular-shift-integer-k-positions/ (not really useful does not apply) , folder of codes, Recorder.
+x or y , bit manipulation (test cases are wrong, even coding ninja solutions giving the same test cases correct as me, put 35 ans should be 10 but ans is 16) - https://stackoverflow.com/questions/51001251/given-int-x-find-y-such-that-xy-is-pallindrome-in-binary-format-works-fine-wi (see the answer) , folder of codes m coding ninja solutions, Recorder.
+check n numbers , bit manipulation - folder of codes, coding ninja solutions, Recorder.
+pattern sum, bit manipulation - folder of codes, Recorder.
+alternatives, arrays - folder of codes, Recorder.
+diamond of numbers, pattern - folder of codes, Recorder.
+count inversions - https://www.geeksforgeeks.org/counting-inversions/ , folder of codes, Recorder.
+starfield , pattern- folder of codes, Recorder.
+leftsum , binary trees - folder of codes, Recorder.
+node level, binary trees - folder of codes, Recorder.
+kth level, binary trees - folder of codes, Recorder.
+sum tree, binary trees, folder of codes, Recorder.
+maximum subarray,arrays - folder of codes, Recorder.
+stocks are profitable (my difficult version where you can buy and sell the stock diffrent times but you can only buy one at time then after selling you can buy again) - folder of codes, Recorder.
+stocks are profitable , arrays -  folder of codes, Recorder.
+k turns allowed , matrix(2d) - https://www.geeksforgeeks.org/count-number-of-paths-with-k-turns/.

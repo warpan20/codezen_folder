@@ -1,0 +1,92 @@
+#include<bits/stdc++.h>
+using namespace std;
+//recursive function
+long long inversions = 0;
+void inversioncounter(long long *arr, int startfirst, int endfirst, int startsecond, int endsecond){
+    //we need to create an array where we can store the result and then copy the same in the the main array when the total result is achieved
+    long long array[endsecond-startfirst+1];
+    int firstpointer = startfirst;
+    int secondpointer = startsecond;
+    int copypointer = 0;
+    //modifications are required below to count the no of inversions
+    while(firstpointer <= endfirst && secondpointer<=endsecond)
+    {
+        if(arr[firstpointer] <= arr[secondpointer]){
+            array[copypointer] = arr[firstpointer];
+            firstpointer++;
+            copypointer++;
+       
+        }
+        
+        else
+        {
+            //here the first part protion including it and upto startfirst is greater than the second element so inversion count occurs here
+            
+            //ifarr[firstpointer] > arr[secondpointer]
+            //whole of firstpointer to endfirst , second pointer are the no of inversions
+            inversions +=  endfirst-firstpointer+1;
+            
+            array[copypointer] = arr[secondpointer];
+            secondpointer++;
+            copypointer++;
+        }
+    }
+    
+    //if first is completely copied then first pointer = endfirst+ 1 so it will not enter the below loop 
+    while(firstpointer <= endfirst )
+    {
+        //copypointer after the while loop points to a vacnat spot that needs to be filled
+        
+        //and firstpointer points to a yet to be copied position
+        
+        array[copypointer] = arr[firstpointer];
+        copypointer++;
+        firstpointer++;
+    }
+    
+    while(secondpointer <= endsecond){
+        
+        array[copypointer] = arr[secondpointer];
+        copypointer++;
+        secondpointer++;
+        
+    }
+    
+    //copy the array value into right positions in arr
+    
+    for(int i=startfirst,k=0;i<=endsecond;i++,k++)
+            arr[i] = array[k];
+    
+    
+    
+    
+}
+void solvehelper(long long *arr, int start, int end){
+    if(start == end)
+        return;//no contribution to the result 
+        
+    int mid = (start+end)/2;
+    solvehelper(arr,start,mid);//sorter
+    solvehelper(arr,mid+1,end);
+    inversioncounter(arr,start,mid,mid+1,end);
+    
+    //from the level for two elemtsn in different locations we count the no of inversions possible
+    
+    
+}
+
+
+
+
+long long getInversions(long long *arr, int n)
+{
+    solvehelper(arr,0,n-1);//index of the first element and the last element
+    //debugger
+    
+    //for(int i=0;i<n;i++)
+       // cout<<arr[i]<<" ";
+    
+    cout<<endl;
+    return inversions;
+    
+}

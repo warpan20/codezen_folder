@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+int maxProfit(int *arr,int l)
+{
+
+    //first the dp may indicate money spent  
+    
+    // 0 holding stock 1 by not holding stock 
+    
+    int dp[l][2];;
+    for(int i= 0;i<l;i++)
+        for(int j=0;j<2;j++)
+            dp[i][j] = 0;
+    
+    //now lets think of the base case
+    
+    dp[0][0] = -arr[0]; //just bying a stock will not give us any profit  
+    dp[0][1] = 0;
+    
+    //now lets find the recurrance relation
+    
+    
+    for(int i=1;i<=l-2;i++){
+    dp[i][0] = max(dp[i-1][0] , dp[i-1][1] - arr[i]);//dp[i-1][0] -arr[i] + arr[i]
+    dp[i][1]  = max(dp[i-1][1],dp[i-1][0]+arr[i]);//left, continue to hold zero stock
+    }
+    
+    //now at the end the maximum answer will be
+    
+    int ans  = max(dp[l-2][1],dp[l-2][0] + arr[l-1]); //he has to be holding no stock at the end
+    
+    
+    
+
+  return ans;
+
+
+
+
+}

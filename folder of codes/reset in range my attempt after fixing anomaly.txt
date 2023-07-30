@@ -1,0 +1,52 @@
+long ResetAllBitsInRange(long num, int left, int right) {
+	//left to right are in form 1 starting
+    //reseting bits converting the bits to zero
+   /* if(left == 0)
+        return 0;
+    if (right == 0)
+        return num;
+        */
+
+    long storage;
+    long range = ~ 0L;
+    for(long i=right;i<=left;i++)//i give the posiion of the array
+    {
+        storage = 1L<<(i-1); //integer constant that has  long int type instead
+        //of int
+         range &= ~storage; // 10000 coverted to 01111 & 0 to 0 and 1 to 1 for 1111
+        
+    }//and 1 to 0 and 0 t0 0 for 1 0 of 01111
+    //int i = 4294967290;
+    //cout<<i;
+	return num & range;
+}
+//this will not pass all test cases but that is because the test cases contain some values which are out of supposed to  be ranges of the input 
+//see below so the sol which passes all the test cases
+
+long ResetAllBitsInRange(long num, int left, int right) {
+	//left to right are in form 1 starting
+    //reseting bits converting the bits to zero
+    if(left == 0)
+        return 0;
+   /* if (right == 0)
+        return num;
+        */
+
+    
+    long range = ~ 0L;
+    for(long i=right;i<=left;i++)//i give the posiion of the array
+    {
+        //integer constant that has  long int type instead
+        //of int
+       
+         range &=  ~(1L<<(i-1));// 10000 coverted to 01111 & 0 to 0 and 1 to 1 for 1111
+        
+    }//and 1 to 0 and 0 t0 0 for 1 0 of 01111
+    //int i = 4294967290;
+    //cout<<i;
+   long ans = num & range;
+    if(right != 0)
+	return ans;
+    else
+       return num - ans; 
+}

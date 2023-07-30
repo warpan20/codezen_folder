@@ -1,0 +1,189 @@
+//THIS IS A SAFE WAY OF CHECKING ONE SET BIT if( !(mask & (mask-1))&& mask) 
+
+//length can be maximum 100 and no of strings can be maximum 10 
+
+// so pos can be from 0 to 99 max and mask can be 10 bits each representing each string
+//to create 1 bit with 1 we need i<<1-1 to create 2 bits like 11 we neet i<<2-1 and to create
+//10 bits 1111111111 we need 1<<10-1;
+//so 0 to 1111111111 bits shoud be accomodted so dp[100][1<<10-1+1] or dp[100][2^10]
+//or dp[100][1024]
+//dp can contain dimesions greater than length of strigns and no of strings shown by length
+//of binary digit which shows 2^10 states or 1024 states at max so the net range of 
+//the dp is 100^1024 < 1e6 so it is acceptable//length can be maximum 100 and no of strings can be maximum 10 
+
+// so pos can be from 0 to 99 max and mask can be 10 bits each representing each string
+//to create 1 bit with 1 we need i<<1-1 to create 2 bits like 11 we neet i<<2-1 and to create
+//10 bits 1111111111 we need 1<<10-1;
+//so 0 to 1111111111 bits shoud be accomodted so dp[100][1<<10-1+1] or dp[100][2^10]
+//or dp[100][1024]
+//dp can contain dimesions greater than length of strigns and no of strings shown by length
+//of binary digit which shows 2^10 states or 1024 states at max so the net range of 
+//the dp is 100^1024 < 1e6 so it is acceptable
+int dp[100][1024];
+int solver(int mask,int pos,vector<string>&v) 
+{ 
+    
+    
+    
+    
+       //we have to return a value which cannot be given by the normal condtions
+       //for which max is like touching everything for all string for maximum no and
+       //maximum length so such an answer might by 100*1024 + 1 = 102401 this makes
+       //sure that in case of a wrong path the cost of the path is so high that
+       //when compared to any normal path that path is rejected so that only normal
+       //paths are our answers
+       //if 102401 does not work and gives wrong result (because if it crosees int limit it goes circular and very large numbers again become no%limit of int) we will try to reduce it
+       
+  
+	if( !(mask & (mask-1))&& mask)  //THE SAFEST WAY TO CHECK ONE SET BIT IN A NO
+	// everything was recongnised successfully when mask contains only one bit set 
+		return 0; 
+
+    
+    
+    
+    
+    
+    
+    //for 1 length string mask = 1 and pos = 0 intially it gets passed and the endding
+    //coditons are mask ==0 and pos == -1 so it is not a concern we can write anyone 
+    
+    //first
+             
+    if(pos == -1||mask == 0) 
+		return 102401;
+
+ 
+
+    //if we look including this pos index and upto 0 and considering this group of 
+    //strings denoted by 1's in the mask
+
+ 	if(dp[pos][mask])
+ 		return dp[pos][mask]; 
+    //now lets go to the main recursive part of the fucntion
+ 
+ 	int newmask1 = 0,newmask2 = 0; int touches = 0; 
+ for(int i = 0;i<v.size();i++) 
+  	{
+        
+        
+        if(mask&(1<<i)) 
+  		{//mask = __________ i starts from right to left 
+            //we touch each character in pos index in all there group of strings denoted by ones in the mask
+            touches++;
+  	 		if(v[i][pos] == '0')
+  	  		{
+  	  			newmask1|= (1<<i); 
+  	  		}else 
+  	   		{
+  	   			newmask2|= (1<<i);
+  	   			} 
+        }
+    }//end of for
+    
+    
+     //two cases when division basis characters on this positions is made or  not made
+            
+            return dp[pos][mask] = min(solver(newmask1,pos-1,v)+solver(newmask2,pos-1,v)+touches,solver(mask,pos-1,v));
+  	    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int minimumTouchesRequired(int n, vector<string> v) {
+    //we pass mask, position, vector
+    return solver((1<<v.size())-1,v[0].length()-1,v);
+    
+}
+int dp[100][1024];
+int solver(int mask,int pos,vector<string>&v) 
+{ 
+    
+    
+    //for 1 length string mask = 1 and pos = 0 intially it gets passed and the endding
+    //coditons are mask ==0 and pos == -1 so it is not a concern we can write anyone 
+    
+    //first
+             
+    if(pos == -1||mask == 0) 
+		return 102401;
+
+       //we have to return a value which cannot be given by the normal condtions
+       //for which max is like touching everything for all string for maximum no and
+       //maximum length so such an answer might by 100*1024 + 1 = 102401 this makes
+       //sure that in case of a wrong path the cost of the path is so high that
+       //when compared to any normal path that path is rejected so that only normal
+       //paths are our answers
+       //if 102401 does not work and gives wrong result (because if it crosees int limit it goes circular and very large numbers again become no%limit of int) we will try to reduce it
+       
+  
+	if((mask&(mask-1)) == 0) 
+	// everything was recongnised successfully when mask contains only one bit set 
+		return 0; 
+
+ 
+
+    //if we look including this pos index and upto 0 and considering this group of 
+    //strings denoted by 1's in the mask
+
+ 	if(dp[pos][mask])
+ 		return dp[pos][mask]; 
+    //now lets go to the main recursive part of the fucntion
+ 
+ 	int newmask1 = 0,newmask2 = 0; int touches = 0; 
+ for(int i = 0;i<v.size();i++) 
+  	{
+        
+        
+        if(mask&(1<<i)) 
+  		{//mask = __________ i starts from right to left 
+            //we touch each character in pos index in all there group of strings denoted by ones in the mask
+            touches++;
+  	 		if(v[i][pos] == '0')
+  	  		{
+  	  			newmask1|= (1<<i); 
+  	  		}else 
+  	   		{
+  	   			newmask2|= (1<<i);
+  	   			} 
+        }
+    }//end of for
+    
+    
+     //two cases when division basis characters on this positions is made or  not made
+            
+            return dp[pos][mask] = min(solver(newmask1,pos-1,v)+solver(newmask2,pos-1,v)+touches,solver(mask,pos-1,v));
+  	    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int minimumTouchesRequired(int n, vector<string> v) {
+    //we pass mask, position, vector
+    return solver((1<<v.size())-1,v[0].length()-1,v);
+    
+}

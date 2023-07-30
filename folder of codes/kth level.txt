@@ -1,0 +1,46 @@
+// Following is the Binary Tree node structure
+/**************
+ class BinaryTreeNode {
+ public :
+ T data;
+ BinaryTreeNode<T> *left;
+ BinaryTreeNode<T> *right;
+ 
+ BinaryTreeNode(T data) {
+ this -> data = data;
+ left = NULL;
+ right = NULL;
+ }
+ };
+ ***************/
+long long sumlevel = 0;
+
+void solvehelper(BinaryTreeNode<int> *root, int k, int level){
+    if(root == NULL)
+        return;
+    if(level == k){ //level will increase from 1 to k at k we will cath the sums 
+        //and end traversal so that k+1 levels are not reached.
+        sumlevel += root->data;
+         return;
+    }
+    //if root != NULL and level < k
+    if(root->left != NULL)
+        solvehelper(root->left,k,level+1);
+    if(root->right != NULL)
+        solvehelper(root->right,k,level+1);
+    
+    return;
+    
+}
+
+long long sumOfNodes(BinaryTreeNode<int> *root, int k) {
+     /* Don't write main().
+     * Don't read input, they are passed as function arguments.
+     * Return output and don't print it.
+     * Taking input and printing output is handled automatically.
+     
+     */
+    solvehelper(root,k,1);//as the level of the root =1 
+    
+    return sumlevel;
+}

@@ -1,0 +1,17 @@
+int FindSmallestN(int k) {
+   
+	if(k==1)
+        //then n has to be even 1st digit changes and rest remain same
+        //retunr lowest even n-1  = 0 2 n = 1 as n>=1 , n is the smallest positive digit
+        return 1;
+    
+    if((k&(k+1)) == 0)
+        //then k has all 1s and k is formed when n-1 is odd n has all digits
+        //zero exept the most signification digit which is 1 more than n-1 most
+        //signification digit and n-1 is of form k>>1 so n is of form k>>1 + 1
+        return (k>>1) + 1;
+        
+        
+        
+    return -1;
+}

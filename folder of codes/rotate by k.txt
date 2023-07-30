@@ -1,0 +1,168 @@
+int RotateByKBits(int num, int k) {
+// the idea is to find first the most signification bit
+    
+    
+    //actually <0 anticlockwise and > 0 is clockwise
+     int result;
+    if(num >= 0){
+    int msbindex;
+    for(int i=30;i>=0;i--) //i = 30 means 2^31 
+      if(num & 1<<i){
+          msbindex = i;
+          break;   
+      }
+    int length;
+    
+        length = msbindex+1;
+        //length of the integer
+    //cout<<length<<endl;
+   
+    //for clockwise rotation
+    
+    
+    if(k>0){
+        //if we rotate by the smae amount as the length then we get the same no
+        //effective rotation
+        
+        int r = k%length;
+         //cout<<r<<endl;
+        
+        //the first k digits have to be extracted
+        //3 dits to be extracted from 4 digets we have to do num>>4-3
+        
+        int fkd = num>>length-r;
+        //we make space for insertion of the k digits
+        result = fkd | num<<r; 
+        //first redundant digits beyond length have to be converted to zero
+        //1<<1 goes beyond the fist bit 1<<length goes beyond length bits -1
+        //covers length bits
+      // if length >0 this method fails
+        
+    }
+    else if(k== 0)
+        result = num; //no change
+    else
+    {//k<0
+        
+        int negation = -k;
+         //cout<<negation<<endl;
+        int r = negation%length;
+        
+        //extract the last k digits
+        //shift them to the front 
+        
+        //just shift them to the front
+        //3 ditis to the fron to 4 digits left shift by 1 left shif tby 4-3 
+        int lkd = num<<length-r;
+        
+        //extract the digits front of the first k digits 
+        //so these length - r digits have to be shifted to the back
+        //there are no digits before these digits
+        
+        result = lkd | num>>r;
+        
+        
+        
+        
+    }
+    
+    //cout<<endl;
+    //cout<< (1<<(length))-1<<endl;
+
+    result &= (1<<(length))-1;
+        
+        
+        
+    } //end of num >= 0
+    else{
+        
+        int length = 31; //actually 32 but we can only deal with 31 bits
+        //k<0 anticlockwise and k>0 clockwise
+       // cout<<"entered here";
+        
+        if(k > 0){
+            int r = k%(length+1); //for the unsigned bit
+            //shift the the first k-1 letters except the unsiged bit has to be shifted to
+            // the back , first 3 letters shifted to back of 4 is 4-3>> first
+            //k-1 shifted to back of length 
+            int frontkmo = num>>(length-r+1);
+            frontkmo = frontkmo | (1<<(r-1));
+            //now we have to the back letters set an some junk in teh fromt
+            
+            //we have to remove this junk including the unsigned bit
+            
+            frontkmo = frontkmo & ((1<<r)-1);
+             //debug
+           // cout<<frontkmo<<endl;
+            //the sign bit will come to the front of the k-1 letters so 
+            //sign bit come front of 1 is 1<<1 and 
+            
+            //remove the unsigned bit
+           // frontkmo = frontkmo + 2147483647;
+            //frontkmo = frontkmo + 1;
+              
+           
+            
+            
+            //now the no of bits is k at the back 
+            //and the front length-k+1 bits have to be shifted to the fornt 
+            
+            int backbit = num<<r;
+            
+            result = frontkmo | backbit;
+            
+            
+            
+            
+            
+            
+        }
+        else if (k < 0){
+            
+           //anticlockwise shift
+            
+            //first of all last k bits have to come first
+            
+           //last 3 bits to come firs tin lengh of 4 is <<4-3 
+            //plus extra shift for the unsigned bit postion
+            //<<4-(3) + 1
+            //left shift works find even for unsigned bit position
+           int negation = -k;
+            int r = negation%(length+1);
+            int backbit = num<<(length-r+1);
+            
+            //now the fornt length-k bits have to come to last 
+            //to cover position of 1 bit we need 1>>1 and so 
+            
+            //is will travel through the space left by the r bits
+            int frontkmo = num>>r;
+            
+            //now we need to put the unsigned bit in front of it 
+            //length -k bits to put in from of 1bit 1<<1
+            frontkmo = frontkmo | (1<<(length-r));
+          
+            
+            //now remove the junk before the length-r+1 bits
+            
+            //including the unsigned bit
+            
+            int flength = length-r+1;
+            frontkmo = frontkmo & ((1<<flength)-1);
+          
+            
+            result = backbit | frontkmo;
+            
+ 
+            
+        }
+        else //k= =0
+            
+        {
+            result = num;
+        }
+        
+     
+    }
+    
+    return result;
+}

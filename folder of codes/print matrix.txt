@@ -1,0 +1,66 @@
+int findmiddle(int n){
+    if(n % 2 == 0)
+        return n/2-1;
+    else 
+        return n/2;
+    
+}
+void PrintPattern(int m, int n){
+
+    char matrix[m][n];
+    //fill the matrix
+    
+    
+    // first find the middle of the matrix
+    //for both the row and colum
+    int middlerow = findmiddle(m);
+    int middlecolumn = findmiddle(n);
+    //fill the matrix
+    int row = 0; int col = 0;bool putx = true; char fill;
+   while(row<= middlerow && col <= middlecolumn){
+       
+       if(putx == true){
+           fill = 'X';
+           putx = false;
+           
+       }
+       else
+       {
+           fill = 'O';
+           putx = true;
+       }
+       //populating the column
+       for(int i=row;i<=m-row-1;i++){
+           matrix[i][col] = fill;
+           matrix[i][n-1-col] = fill; //for this col you pupulate all the rows in range 
+           //given by i
+       }
+       
+       //pupulating the row
+       for(int i=col;i<=n-col-1;i++){
+           
+           matrix[row][i] = fill;
+           matrix[m-1-row][i] = fill;
+           //for this row you pupulate all the columsn in range given by i
+       }
+       
+       
+       row++;
+       col++;
+       
+       
+       
+   }
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            
+            
+            cout<<matrix[i][j];
+        }
+        
+        
+        cout<<endl;
+    }
+      
+  
+}

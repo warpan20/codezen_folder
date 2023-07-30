@@ -1,0 +1,36 @@
+int lcs(string s1, string s2)
+{
+   int n = s1.length();
+   int m = s2.length();
+    int dp[n+1][m+1];
+    //populate the dp
+    //now when s1 = null then longest commom subsequence with any prefix of s2 will be 
+    //zero same whne s2 is null then longest common subsequence with any prefix of s1 will
+    //be zero
+    for(int i=0;i<m+1;i++)
+        dp[0][i]  = 0;
+    for(int i=0;i<n+1;i++)
+        dp[i][0] = 0;
+    //form the dp
+    for(int i=1;i<n+1;i++)
+        for(int j=1;j<m+1;j++)
+        {
+            if(s1[i-1] == s2[j-1]){//i j in the array are from 1 starting so they correspond to i-1 and j-1
+                //characters in s1 and s2 respectively
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }
+            else
+                dp[i][j] = max(dp[i][j-1],dp[i-1][j]);
+        }
+    
+    
+    //debugging code
+   /* for(int i=0;i<n+1;i++){
+        for(int j=0;j<m+1;j++){
+            cout<<dp[i][j]<<" ";
+        }
+    cout<<endl;
+} */
+    return dp[n][m];
+    
+}

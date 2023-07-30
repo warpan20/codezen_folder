@@ -1,0 +1,50 @@
+void printPatt(int n)
+{
+    //n is always odd is n is even this pattern is not possible becouae
+    //n for 1 to some value and resutl to 1 and the last value is only once
+    //n is 2 1
+    ///      1  which is no the kind of pattern we want
+    if(n%2 == 0)
+        n++;
+    
+    int mid = n/2; 
+    
+    //int i we loop from = mid-i to m+i and start from zero
+    
+    // the matrix is n/n matrix
+    int matrix[n][n];
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            matrix[i][j] = -1;
+    int count;
+    for(int i=0;i<=mid;i++){
+        count = 1;
+        for(int j=mid-i;j<=mid+i;j++){
+            matrix[i][j] = count++;
+            matrix[n-1-i][j] = count-1;
+        }
+    }
+    
+    //print the matrix
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+        {
+            if(matrix[i][j] == -1)
+                cout<<" ";
+            else
+                cout<<matrix[i][j];
+            
+        }
+        
+        
+        cout<<endl;
+    }
+    
+    
+    
+    
+    
+    
+    
+}

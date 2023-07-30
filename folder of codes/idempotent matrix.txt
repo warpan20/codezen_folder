@@ -1,0 +1,46 @@
+bool CheckIdempotent(int **mat, int n){
+	//so basically i the row and all cols multiplication and do it for all rows
+    int matrix[n][n];
+    
+    
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            matrix[i][j] = 0;
+    
+    
+    
+    for(int i=0;i<n;i++){
+        
+        
+        for(int j=0;j<n;j++){
+            
+            //filling the value of matrix[i][j]
+            
+            
+            
+            //mutiple the i the row with the 0 col  and put in in matrix i 0 similar for 
+            //other cols so mutipley ithe row with j col and put in in matrix i j
+            
+            //now fill the matrix i j
+            
+            for(int ele=0;ele<n;ele++)
+                matrix[i][j] += mat[i][ele]*mat[ele][j];//ithe row elemetnand j
+            //col element
+            
+      
+            
+        }
+    }
+    
+    
+    
+    //check if it is idempotent
+    
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            if(mat[i][j] != matrix[i][j])
+                return false;
+    
+    
+    return true;
+}

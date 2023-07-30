@@ -1,0 +1,111 @@
+//i = 31 CHANGED TO i = 30
+//first we have to form a TrieNode
+struct trienode {
+  trienode* child[2];
+  int value;
+};
+
+//write a getnode fucntion that creates a trienode and returs a pointer to the it
+
+trienode* getnode(){
+    trienode* newnode = new trienode();
+    newnode->child[0] = NULL;
+    newnode->child[1] = NULL;
+    newnode->value = 0;
+    return newnode;
+}
+
+//write a function that creates insert the node into the trie and puts the value at 
+//the last node after reaching the end of the trie
+
+void insert(int num , trienode * root){ //we need to pass the root trie in which we are trying to insert 
+    // this no
+    trienode * temp = root;
+    
+    //new we traverse through all the bits of the tirenode and try to insert it in the tire
+    //basically we treat the num as a string of ones and zeroes
+    for(int i=30; i>=0;i--){
+        //extracting the ith index bit of the num
+        
+        bool currbit = num & (1<<i);
+        
+        //if the child of the root does not contain the currbit then we create a 
+        //new node and insert the bit there
+        
+        if(temp->child[currbit] == NULL)
+            temp->child[currbit] = getnode();
+        
+        //new we put the parent for the newt bit in the next itiration as this node
+        temp = temp->child[currbit];
+        
+        
+    }
+    
+    // at the end of this operation the temp corresponds after the last bit of the array
+    
+    //we set the value of this temp node to the number
+    
+    temp->value = num;
+    
+    
+    
+}
+
+
+//now we need to define a function where if we give it a root to a trie and and a num 
+//then it goes to the end of the trie depending on the individual bits of the num and
+//computes xor with the value of the node after the last bit node reached
+
+int findmaxxor(int num, trienode* root){
+    
+    //store the root in a temp variable so that we donot disturb the root
+    trienode * temp = root;
+    for(int i= 30; i>=0;i--){
+        bool currbit = num & (1<<i); //if it is any value currbit witll store 1 else 0
+        
+        //we try to find a bit opposite to the currbit 
+        
+        if(temp->child[1-currbit] != NULL)
+            temp = temp->child[1-currbit];
+        else
+            //we go for the same bit
+            temp = temp->child[currbit]; 
+        
+        
+    }
+    
+    //at the end we reach the node after the last bit
+    
+    //thne we compute the xor of the num with this value and return the
+    //result
+    
+    return temp->value ^ num;
+    
+    
+}
+
+
+int FindMaxXOR(int arr[], int n, int arr2[], int n2){
+	//we need to write store the value of the 
+    //first we need to construct a trie with a root and the elemets of the arr
+    
+    trienode *root = getnode();
+    for(int i=0;i<n;i++)
+        insert(arr[i],root);
+    
+    
+    
+    //now the constructed trie is represented by the root
+    
+    //now we need to find the maximum xor of the of each of the element of the second 
+    //array with this trie
+    int maxxor = -2147483648;
+    for(int i=0;i<n2;i++){
+        int xorvalue = findmaxxor(arr2[i],root);
+        maxxor = max(maxxor,xorvalue);
+        
+    }
+    
+    
+	return maxxor;
+}

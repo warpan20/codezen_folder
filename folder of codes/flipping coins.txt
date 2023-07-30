@@ -1,0 +1,21 @@
+
+int solve(int arr[],int n)
+{
+    int currmax= 0, maxdiff = 0;
+    int count[2];
+    for(int i=0;i<2;i++)
+        count[i] = 0;
+    
+    //cout<<count[1]<<" "<<count[0]<<endl;
+    int modval;
+	for(int i=1;i<=n;i++){ //SPECIAL ARRAY INDEXED FROM 1 TO N
+        //cout<<arr[i]<<endl;
+        count[arr[i]]++;
+        modval = (arr[i] == 1) ? -1 : 1;
+        currmax = max(modval, modval+currmax);
+        //cout<<currmax<<" "<<modval<<" "<<arr[i]<<endl;
+        maxdiff = max(maxdiff,currmax);
+        
+    }
+    return maxdiff+count[1];
+}

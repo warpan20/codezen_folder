@@ -1,0 +1,83 @@
+bool ispallin(long n){
+   /* if(n%2 == 0)
+        mid = n/2 -1;
+    else
+        mid = n/2; */
+int msb; //most significant bit index
+	for(int i=62;i>=0;i--)
+    {
+        if(n & (1L<<i)){
+            msb = i;
+            break;
+        }
+        
+    }
+    
+    int left = msb;
+    int right = 0;
+    //cout<<left<<" "<<right<<endl;
+    bool ispallin = true;
+    while(right < left){
+        bool leftbitone  = n & 1L<<left;
+        bool rightbitone = n & 1L<<right;
+        //cout<<leftbitone<<" "<<left<<" vs "<<right<<" "<<rightbitone<<endl;
+        if(leftbitone != rightbitone)
+        {
+            ispallin = false;
+            break;
+        }
+        left--;
+        right++;
+        
+    }
+    
+    return ispallin;
+    
+}
+
+
+
+
+
+long FindPairY(long num) {
+    //index = 63 is sign bit for long so 
+    //we will itirate from i= 63 to 0 to find the most significant bit
+    int msb; //most significant bit
+    //cout<<sizeof(long)<<endl;
+    //cout<<sizeof(int)<<endl;
+	for(int i=62;i>=0;i--) 
+    {
+        if(num & (1L<<i)){
+            msb = i;
+            break;
+        }
+        
+    }
+    //cout<<msb<<" most significant bit"<<endl;
+    
+    //cout<<ispallin(45)<<endl;
+    //cout<<ispallin(51)<<endl;
+   /* cout<<ispallin(9)<<endl;
+    cout<<ispallin(4)<<endl;
+    cout<<ispallin(12)<<endl;
+    */
+    //is pallin is working properly
+    
+    long maxpallin = (1L<<(msb+1)) -1; //going beyond the msb and -1 to get all 1's from
+    //msb to the end
+    //cout<<maxpallin<<endl;
+    long limity  = maxpallin - num;
+    long y;
+    for(long i= 0;i<=limity;i++){ // i != 0 as we need to find the min positive no
+        long newnum = num+i;//but 0 answers are given so i from 0
+        if(ispallin(newnum))
+        {
+          y = i;
+            break;
+            
+        }
+    }
+    
+    
+    return y;
+}

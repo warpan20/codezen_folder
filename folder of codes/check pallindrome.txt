@@ -1,0 +1,41 @@
+int checkbit(long num, int pos){
+    if(num & (1<<(pos))) //if bit at position is zero then if will be zero
+        return 1;//so the conditions is false if bit is 1 then then answer will be non
+    //zero that is 1<<pos and the condition will be true
+        else
+        return 0;
+}
+bool CheckPalindrome(long num) {
+	int l = 0;
+    int r;//we need to figure out r
+    int temp = num;
+    //since most nos are small we start from the bottom
+    int counter =0;
+    while(temp!=0){
+        temp = temp/2;
+        counter++;
+    }//for 3 /2 = 1/2 = 0 2 bits 2 times the loop runs so counter = 2 actual pos
+    //counter -1
+        
+    r = counter -1;
+    
+   //  cout<<checkbit(num,0)<<endl;
+    //cout<<checkbit(num,1)<<endl;
+    //cout<<(3 & (1<<1))<<endl;
+    
+    
+    //debug
+    //cout<<r<<endl;
+    while(l<r){
+    if(checkbit(num,l) == checkbit(num,r)){
+        r--;l++;}
+     else
+         return false;
+        
+        
+    }
+   
+    
+    
+    return true;
+}

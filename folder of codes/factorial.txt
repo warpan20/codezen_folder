@@ -1,0 +1,17 @@
+import java.math.BigInteger;
+public class Solution {
+    //because we are calling factorial from static fact so factorial also has to be 
+    //static
+	public static BigInteger factorial(int n){
+        if(n==1 || n== 0)
+            return BigInteger.valueOf(1);
+        
+        BigInteger num = BigInteger.valueOf(n);
+        
+        return num.multiply(factorial(n-1));
+        
+    }
+	public static void fact(int n) {
+		System.out.println(factorial(n));
+	}		
+}

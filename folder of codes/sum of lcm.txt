@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+void func(long long n)
+{
+    long long int sum = 0;
+    long long int lcm; long long gcd;
+	for(long long i=1 ;i<=n;i++)
+    {
+        gcd = __gcd(i,n);
+        lcm = (i*n)/gcd;
+        sum = sum + lcm;
+        
+    }
+    cout<<sum;
+}

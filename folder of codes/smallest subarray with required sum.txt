@@ -1,0 +1,58 @@
+#include <vector>
+
+vector<int> smallestSubarray(int sum, vector<int> input) {
+	//so this problem can be solved using the sliding window algorithm
+    //we will use left and right two pointers to solve the problem
+    int left = 0,right = 0;
+    int n= input.size();
+    int minlength  = n+1; //caurse if the windows stays inside the array
+    //it's value can't be n+1
+    int leftindex;//we don't have to initialize as atleast on right case will be there
+    
+    int rightindex;//don't have to intialize for the same reason as above
+    int currsum = input[0];
+    while(left < n && right < n)
+    {
+       
+        if(currsum > sum)
+        {
+            int length = right-left+1;
+            if(length < minlength){
+                minlength = length;
+                leftindex = left;
+                rightindex = right;
+              
+                if(left == right)//this happens with left = right and the elment satisfied
+                    //the equation in that case it will be the result
+                    break;
+            }
+            currsum -= input[left];//decremeting the left and shift the left forwards
+            left++;
+            
+         
+        }
+        else{ 
+                
+               
+            right++;//increment the right and add new element 
+          if(right<n){//right may go out of bounds because of the inclrement tne the next
+              //statement may become invalid
+         currsum += input[right];}
+            //esel it will break at the starting of the next loop
+        }
+        
+    }  
+    
+//we don't have to check for min length = n+1 in the end because as per the question
+    //atlest one minlength exists which will be less than = n
+    
+    
+    //now we print the element of the array from the leftindex to the right index
+  vector<int> result;  
+   for(int i=leftindex; i<=rightindex;i++)
+        result.push_back(input[i]);
+    
+    
+    
+    return result;
+}

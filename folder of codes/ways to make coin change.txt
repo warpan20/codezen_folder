@@ -1,0 +1,72 @@
+
+int countWaysToMakeChange(int denominations[], int numDenominations, int value){
+
+  //one row for if zero coins are there then we cannot achieve any value so no of ways 
+    //to achieve that value will be zero
+    int dp[numDenominations][value+1];
+    //if value is zero then we cannot really achieve anything at the itha nd below 
+    //choice fo coins
+    
+    
+    //initialize the dp to zero for safety
+    for(int i=0;i<numDenominations;i++)
+        for(int j=0;j<=value;j++)
+            dp[i][j] = 0;
+    
+    
+   
+    for(int i=0;i<=value;i++) //no fo ways for 1 to get zero value is 1 as it will
+        //not consider 1
+    {
+        if(i % denominations[0] == 0)
+            dp[0][i] = 1; //no of ways to reach i values using only 1st element
+        //represented by denominations[0]
+        else
+            dp[0][i] = 0;
+    }
+    
+    //for the first column the value shoud be 1 
+    //when 1 and 2nd are left then no of ways will be someone has already achieve the value
+    //so answer will be one for the achieve ment of that one now 0,0 has been populated by
+    //the above so we start with 1
+    
+    for(int i=1;i<numDenominations;i++)
+        dp[i][0] = 1;
+    
+    
+    
+    
+    for(int i=1;i<numDenominations;i++)
+        for(int j=1;j<=value;j++){
+            int currdenomination = denominations[i];
+            int valueoccupiedbycd = currdenomination;//value occupied by 
+            //currentdenomination
+            while(j-valueoccupiedbycd >= 0){
+                
+                
+                //debug code
+                //if(j== value)
+               // cout<<j-valueoccupiedbycd<<endl;
+                
+                
+                dp[i][j] += dp[i-1][j-valueoccupiedbycd];
+                valueoccupiedbycd +=currdenomination;
+            }
+            
+            dp[i][j] +=dp[i-1][j];//when the currentdenomination does
+            //not occupy any value
+            
+        }
+  /*  for(int i=0;i<numDenominations;i++){
+        for(int j=0;j<=value;j++)
+            cout<<dp[i][j]<<" ";
+        
+        
+        cout<<endl;
+    } */
+    
+    
+    
+    return dp[numDenominations-1][value];
+
+}

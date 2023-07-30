@@ -1,0 +1,46 @@
+void FindSumOfNumbers(int arr[],int n, int countzero, int countone) {
+	//find the no of zeros and ones in a no
+    int sum = 0;
+    for(int i=0;i<n;i++){
+        
+        int msb = 0;//if no ones are found then 0 is the no as 0 is the significatn
+        //digit we check for 0 and find one zero and no fo zeros = 1 and no of ones = 0
+        //in that case , if similar conditions are given it will be printed
+    for(int j=30;j>=0;j--){
+        if(arr[i] & (1<<j)){
+            msb = j;
+            break;
+        }
+    }
+        
+        int noofones = 0, noofzeros = 0;
+        for(int j= msb ; j>=0;j--)
+        {
+            if(arr[i] & (1<<j)){
+                noofones++;
+            }
+            else
+            {
+                noofzeros++;
+            }
+            
+            
+            
+        }
+        
+        //cout<<noofones<<" "<<noofzeros<<" "<<arr[i]<<endl;
+        if(noofones == countone && noofzeros == countzero)
+            sum += arr[i];
+        
+        
+    }
+        
+
+    
+        
+        
+        
+     cout<<sum;   
+        
+        
+}

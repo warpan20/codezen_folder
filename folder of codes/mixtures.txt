@@ -1,0 +1,84 @@
+int solve(int n,vector<int>colors)
+{
+	// we will define a dp to compute n mixtures from 0 to n-1 so we take dp[n][n]
+    //and the ans = dp[0][n-1] the first mixture to the last mixture
+    
+    int dp[n][n];
+    
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            dp[i][j] = 1e9;//as we are interested in finding the minimum value among
+    // all the options 
+    
+    
+    //for one mixture we don't have to do anything so
+    for(int i=0;i<n;i++)
+        dp[i][i] = 0;
+    
+    //developing the modulus function
+    
+    //mod of it seft is value%100  where value is the value of itself mod[i][i] = colors[i]%100
+    
+    int modsum[n][n];
+    //every relevant item will be filled up by a value by way of assignment or additon so we can fill all elements of the 2d mod array by zero
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            modsum[i][j] = 0;
+    
+    
+    //i ,i elements initialization
+    
+    for(int i=0;i<n;i++) //both mod colors and dp are starting from zero index so mod i,i corresponds to colors i
+        modsum[i][i] = colors[i]%100;
+    
+    
+    
+    
+    //now we need to populate the entire mod dp
+    
+    for(int length = 2;length<=n;length++)
+        for(int i=0;i<=n-length;i++)
+            for(int j=0;j<= i+length-2;j++) // 0 to j and j+1 to end and j+1 <=end so j<=end-1
+            {
+                
+                
+                modsum[i][i+length-1] = (modsum[i][i+length-1-1] + colors[i+length-1])%100; //mod i,j-1 has less length so computed before
+            }
+    
+    
+    //debugger
+    
+  /*  for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+            cout<<modsum[i][j]<<" ";
+    cout<<endl;
+        
+    }
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    for(int length=2;length<=n;length++)
+        for(int i=0;i<=n-length;i++)
+            for(int j=i; j<=i+length-1-1;j++)//optimal value from 0 to j and j+1 to end so j+1<=end
+            {//j <=end-1
+                
+                dp[i][i+length-1] = min(dp[i][i+length-1], dp[i][j] + dp[j+1][i+length-1] + modsum[i][j]*modsum[j+1][i+length-1]);
+                
+                //we need to find another variable called modsum to find the modulus of the additons between any two indexes
+                //well the modulus can be found by simply summing the indexes from i to j and then taking the modulus but we donot want to do the same 
+                //work repeatedly so we need to keep the values ready beforehand
+                
+                
+            }
+    
+    
+    
+    return dp[0][n-1];
+    
+}

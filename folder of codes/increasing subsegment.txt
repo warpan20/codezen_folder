@@ -1,0 +1,57 @@
+int solve(int a[],int n)
+{
+    int l[n];
+    int r[n];
+    l[0] = 0;//it is correct
+    r[n-1] = 0;//it is correct
+    //calculating the left pointer
+    int counter = 1;
+    for(int i=0;i<n-1;i++){
+        
+        if(a[i]<a[i+1]){
+            
+        l[i+1] = counter;
+            counter++;
+        }
+            else{
+                l[i+1] = counter;
+            counter = 1;
+            }        
+        
+        
+        
+        
+    }
+    counter= 1;
+    //calculating the right pointer
+    for(int i=n-1;i>0;i--){
+        
+        if(a[i-1] < a[i]){
+            r[i-1] = counter;
+            counter++;
+        }
+        else{
+            r[i-1] = counter;
+            counter = 1;
+        }
+        
+    }
+    int answer = 1;
+     //considering that a[n-2] != pow(10,9)
+    for(int i=1;i<n-1;i++){
+        if(i== 0 || i== n-1 || a[i+1] - a[i-1] >= 2)//other cases need not be considered as they are captured somewhere else
+            answer = max(answer,1+l[i]+r[i]);
+        else 
+            answer = max(answer,max(1+l[i],1+r[i]));
+    }
+ 
+    
+    //debug code
+  /* for(int i=0;i<n;i++){
+        cout<<l[i]<<" "<<r[i]<<endl;
+    } */
+    
+    
+    return answer;
+    
+}

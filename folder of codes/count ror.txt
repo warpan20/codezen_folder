@@ -1,0 +1,36 @@
+long long int solve(string input)
+{
+	//first what we do is we traverse from the left and right of the string 
+    //and find what is to the left of a particular character
+    //then we traverse from right to left and do the same
+    int n = input.length();
+    long long left = 0;
+    long long leftr[n];
+    for(int i=0;i<n;i++)
+        leftr[i] = 0;
+    for(int i=0;i<n;i++){
+        leftr[i] = left;
+        if(input[i] == 'R')
+            left++;
+        //this left will be set to left[i+1] which is logical
+    }
+    long long  right =0;
+    long long rightr[n];
+    for(int i=0;i<n;i++)
+        rightr[i] = 0;
+    for(int i=n-1;i>=0;i--){
+        rightr[i] = right;
+        if(input[i] == 'R')
+            right++;
+    }
+    long long result = 0;
+    for(int i = 1;i<= n-2;i++)
+    {
+        if(input[i] == 'O')
+            result +=  (rightr[i]*leftr[i]);
+    }
+    
+    
+    
+    return result;
+}

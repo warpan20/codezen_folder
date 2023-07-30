@@ -1,0 +1,89 @@
+#include<bits/stdc++.h>
+using namespace std;
+/*************************************************************
+ 
+    Following is the Binary Tree node structure
+
+    class BinaryTreeNode 
+    {
+    public : 
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+*************************************************************/
+vector<int> vec;
+void solvehelper(BinaryTreeNode<int> *root){
+    if(root == NULL)
+        return;
+   // bool isleftnull = false, isrightnull = false;
+    int newdata = 0;
+    
+    if(root->right != NULL){
+        newdata += root->right->data;
+        solvehelper(root->right);
+    }
+    
+    if(root->left != NULL){
+        newdata += root->left->data;
+        solvehelper(root->left);
+    }
+  /*  else
+    {
+        isleftnull = true;
+    } */
+    
+  /*  else
+    {
+        isrightnull = true;
+    }*/
+    
+    //we need to pupulate the vector
+    
+    //vec.insert(vec.begin(),newdata);//time consuming//i will push abck and reverse
+    //in the end
+    vec.push_back(newdata);
+    
+  
+    /*if(isleftnull)
+        vec.push_back(0);//
+    if(isrightnull)
+        vec.push_back(0); */
+        
+    
+}
+vector<int> sumTree(BinaryTreeNode<int> *root)
+{
+    //node is 0 to array positon 0 and position of the left node is 2*0 + 1 and 
+    
+    //position of the right node is 2*0 + 2
+    
+    //vector is dynamic so after a new node is found or a leaf node is found we can 
+    //push it back to the vector to find expand the vetor
+    
+    solvehelper(root); 
+    
+    
+    reverse(vec.begin(),vec.end());
+ 
+    return vec;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

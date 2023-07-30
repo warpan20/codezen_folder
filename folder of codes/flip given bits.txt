@@ -1,0 +1,15 @@
+nt FlipSomeBits(int num, int arr[], int n) {
+// we use the XOR fucntion to flip bits
+   //arr[i] = no means we need to change value of bit at index no-1  
+    for(int i=0;i<n;i++){
+        num = num^(1<<(arr[i]-1));
+    }
+    
+    
+    
+    return num;
+
+
+
+
+}

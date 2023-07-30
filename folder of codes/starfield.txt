@@ -1,0 +1,64 @@
+void printPatt(int n)
+{
+    
+   //matrix we have to make of 2*n-1
+    int size = 2*n-1;
+    char matrix[size][size];
+    for(int i=0;i<size;i++)
+        for(int j=0;j<size;j++)
+            matrix[i][j] = ' ';
+    
+    
+    int leftrange = -1;
+    
+    //i generally cosider n to be odd and so the middle will be 
+    // size/2 0 to n-2 one size n-1 is middle and n to 2*n-2 = no = 2n-2-n + 1 = n-1
+    
+    //for both the row and column the last index is 2*n-2 , we store it as limit
+    
+    int limit = 2*n-2;
+    int mid = n-1;
+    for(int i=0;i<=mid;i++){
+        if(i%2 == 0)
+            leftrange++;
+     
+     //when j=i then printing is on i so k=i
+        //when j beyond i by -1 then k will by print ted by -2
+        //when j beyond by -1 more k will shift by -2 more
+     for(int j=i,k=i;j>=i-leftrange;j--,k-=2)
+     {
+         matrix[i][k] = '*';
+         matrix[limit-i][k] = '*';
+         matrix[i][limit-k] = '*';
+         matrix[limit-i][limit-k] = '*';
+         
+         
+     }
+     
+        
+        
+    }
+    
+    //finally we need to print the matrix
+    
+    for(int i=0;i<size;i++){
+        
+        for(int j=0;j<size;j++){
+            cout<<matrix[i][j];
+        }
+        
+        
+        
+        cout<<endl;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

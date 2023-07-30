@@ -1,0 +1,41 @@
+int dp[100][1024];
+int solver(int mask,int pos,vector<string>&v) 
+{ 
+    
+        
+    if(pos == -1||mask == 0) 
+		return 102401;
+
+
+	if((mask&(mask-1)) == 0) 
+	// everything was recongnised successfully when mask contains only one bit set 
+		return 0; 
+
+
+ 	if(dp[pos][mask])
+ 		return dp[pos][mask]; 
+
+ 	int newmask1 = 0,newmask2 = 0; int touches = 0; 
+ 	 //if we touch the v[any][pos],mask will split. 
+  	for(int i = 0;i<v.size();i++) 
+  	{
+  		if(mask&(1<<i)) 
+  		{
+  			touches++;
+  	 		if(v[i][pos] == '0')
+  	  		{
+  	  			newmask1|= (1<<i); 
+  	  		}else 
+  	   		{
+  	   			newmask2|= (1<<i);
+  	   			} 
+  	   		} 
+  	   	} 
+  	   return dp[pos][mask] = min(solver(newmask1,pos-1,v)+solver(newmask2,pos-1,v)+touches,solver(mask,pos-1,v));
+  	    } 
+
+
+int minimumTouchesRequired(int n, vector<string> v)
+{ 
+	return solver((1<<v.size())-1,v[0].length()-1,v); 
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+// n - number of rows given
+void printPattern(int n){
+	//we have to maintain a top value and a bottom value if the top value is greater than
+    //the bottom value then we know that the top value area is printed an the 
+    //bottom value are already printed so we finish the program
+    
+    
+    int counter = 1;
+    int top = 0;
+    int bottom = n-1;
+    int matrix[n][n];
+    //since we fill all the values of the matrix we dont have to clean it
+    bool printtop = true;
+    while(top<=bottom)
+    {
+        if(printtop){
+            for(int i=0;i<n;i++)
+                matrix[top][i] = counter++;
+            
+            printtop = false;
+            top++;
+        }
+        else
+        {
+            for(int i=0;i<n;i++)
+                matrix[bottom][i] = counter++;
+            
+            printtop = true;
+            bottom--;
+        }
+    }
+    
+    //print the matrix
+    
+    for(int i=0;i<n;i++){
+        
+        for(int j=0;j<n;j++)
+            cout<<matrix[i][j]<<" ";
+        
+        cout<<endl;
+    }
+
+}

@@ -1,0 +1,65 @@
+
+int mcm(int* p, int n){
+
+    
+   //dimensions given are small so matrix chain multiplication is possible
+  // dp[i][j] represents minimum no of multiplications form i to j
+    //p[0] means *(p+0) so i ranges from 0 to n-1 so dp should be
+    //be dp[n][n]
+  int dp[n][n];
+    
+  for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            dp[i][j] = 1e9; 
+   
+  
+  // for i j means matrix multiplying to itself we need no work so 0
+  // see next to next comment 
+    for(int i=0;i<n;i++)
+            dp[i][i] = 0;
+    
+     //debugger
+   /* for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+            cout<<dp[i][j]<<" ";
+    
+     cout<<endl;   
+    } */
+    
+   // cout<<"value of n "<<n<<endl;
+    
+    //now we populate the array for lengths 2 to n
+    
+    for(int length = 2;length<=n;length++)
+        for(int i=0;i<=n-length;i++)
+            for(int j=i;j<=i+length-2;j++) // 0 2 measn 0 0 and 0 1  0 0 gives
+            {//0 so it all makes sense doing dp[i][i] = 0
+                
+            //since we have divisions i to j and j+1 i+length-1 
+                //j has to be upto i+length-1 for i=0 and i+length-1 = 1
+                // 0 0 to 1 1 has meaning but 0 1 2 1 has no meaning
+                // 0 0 to 1 1 means p0p1p2 ans so dp[i][i] = 0;
+                //also if n= 1 what should be dp[1][1] what is the work required for 
+                //multiplicatio of one matrix ans should be zero right
+                
+                
+                //cout<<"entered the loop"<<endl;
+                
+                dp[i][i+length-1] = min(dp[i][i+length-1],dp[i][j]+dp[j+1][i+length-1]+p[i]*p[j+1]*p[i+length]);
+                
+        
+    }
+    
+    //debugger
+   /* for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+            cout<<dp[i][j]<<" ";
+    
+     cout<<endl;   
+    } */
+    
+    return dp[0][n-1]; //from 0 it the first matrix to n-1 that is the last matrix
+  
+
+
+}

@@ -1,0 +1,69 @@
+void printPatt(int n)
+{
+   //no of rows = 2*n-1
+   //no of columns = 2*n-1
+    //so define a matrix that can take care of it
+    int matrix[2*n-1][2*n-1];
+    
+    //fill the matrix
+    for(int i=0;i<2*n-1;i++)
+        for(int j=0;j<2*n-1;j++)
+            matrix[i][j] = 0;
+    
+    //now compute the problem
+    
+    //row will go from 0 to n-1 included and intial value fo print 
+    // is storted in couter = n
+    
+    int counter = n;
+    int row = 0;int col = 0;
+    while(row<=n-1 && col <=n-1){
+        //for one row we need to print the row and 2*n-1-1-row or 2*(n-1)-row for cols
+        //col to 2*(n-1) - col
+        int matrixrowlimit = 2*n-2;
+        int matrixcollimit = 2*n-2;
+        
+        for(int i= col;i<=n-1;i++)
+        {
+            matrix[row][i] = counter;
+            matrix[matrixrowlimit-row][i] = counter;
+            //reflection about the vertcal axis need to be considered
+            matrix[row][matrixcollimit-i] = counter;
+            matrix[matrixrowlimit-row][matrixcollimit-i] = counter;
+            
+        }
+        
+        //for col col and 2*(n-1)-col we need to traverse from row to 
+        //2*(n-1)- row
+        
+        for(int i=row; i<=n-1;i++)
+        {
+            matrix[i][col] = counter;
+            matrix[i][matrixcollimit-col] = counter;
+          
+            //for these tow columns reflection about horizontal axis elements 
+            //nedd to be considered
+            matrix[matrixrowlimit-i][col] = counter;
+            matrix[matrixrowlimit-i][matrixcollimit-col] = counter;
+        }
+        
+        
+        row++;
+        col++;
+        counter--;
+        
+    }
+    
+    //now we need to just print the matrix
+    
+    for(int i=0;i<2*n-1;i++)
+    {
+        for(int j=0;j<2*n-1;j++)
+            cout<<matrix[i][j];
+        
+        cout<<endl;
+    }
+    
+    
+    
+}

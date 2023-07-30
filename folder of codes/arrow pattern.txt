@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+
+      //for the first row no space 1 star for
+    //row of index i i spaced 1 to i and i+1 star 1 to i+1
+    //middle n/2 as n is odd
+    //i from  0 to <=n/2 and in each case 
+    // first print i " " then print i+1 "*" then copy then to 
+    //last is n-1-i row and same column for middle n/2 + n/2 + 1 columns 
+    //this is n only
+    //so it is the limit 
+    //so matrix = matrix[n-1][n/2 + n/2 + 1] ths is n only
+    //row to 0 to <=n/2 and col 0 to <= n/2 + n/2
+    int n;
+    cin>>n;
+    char matrix[n][n];
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            matrix[i][j] = ' ';
+    
+    //0 to i-1 is ' ' for i row and i to i+1 length is * i to 2i is 2i-i+1 length = i+1 lenght
+    
+    for(int i=0;i<=n/2;i++) //we have to go upt the middle
+        for(int j=i;j<=2*i;j++)
+        {
+            matrix[i][j] = '*';
+            matrix[n-1-i][j] = '*';
+        }
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+            cout<<matrix[i][j]<<" ";
+        cout<<endl;
+    }
+    
+    return 0;
+   
+}
+
+

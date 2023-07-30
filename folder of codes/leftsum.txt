@@ -1,0 +1,41 @@
+// Following is the Binary Tree node structure
+/**************
+class BinaryTreeNode {
+    public : 
+    T data;
+    BinaryTreeNode<T> *left;
+    BinaryTreeNode<T> *right;
+
+    BinaryTreeNode(T data) {
+        this -> data = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+***************/
+
+int solver(BinaryTreeNode<int>* root, bool isleftchild){
+    int leftsum = 0;
+    if(isleftchild)
+     leftsum += root->data;
+    if(root->left != NULL)
+        leftsum += solver(root->left, true);
+    if(root->right != NULL)
+        leftsum += solver(root->right, false);
+    
+    
+    return leftsum;
+    
+    
+} 
+
+int leftSum(BinaryTreeNode<int>* root){
+    int leftsum = 0;
+    if(root->left != NULL)
+        leftsum += solver(root->left , true);
+    if(root->left != NULL)
+        leftsum += solver(root->right, false);
+    
+    return leftsum;
+
+}

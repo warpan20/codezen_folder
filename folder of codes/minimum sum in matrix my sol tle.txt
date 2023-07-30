@@ -1,0 +1,53 @@
+
+//SOLUTION WILL ALSO BE POSSIBLE FOR IT IF I HAVE CONSIRED CORRECT ASSUMPTION IN THE MARKED LINE SHOWN BELOW THEN NO OF COL I HAVE CONSIDERED N ACTUALLY IT IS N
+//TEST CASE SATISFIED BECAUSE THERE N = NO OF ROWS = 3 WHICH I CONSIDERD FOR NO OF COLUMS ALSO I CONSIRED NO FO ROWS = NO OF COLUMS ; AND IN THE TEST CASE GIVEN IN THE
+//PROBLEM NO OF ROWS = NO OF COLUMBS SO MY SOLUTION SUCCEDED.IN ALL TEST CASES NO OF ROWS > 3 AND I HAVE COSIDERED NO OF ROWS = NO OF COLUMS >3 SO MY ASSUMPTION WAS HIGHER THAN REQUIREMENT
+//SO ANSCAME WRONG.
+
+
+#include<bits/stdc++.h>
+using namespace std;//for the 1e9 to work properly this and above line
+#define infinity 1000000000
+
+int solver(int **matrix, int n, int index, int excludedindex){
+    //if we have index = rowvalue of working  = n then we return 0 to 
+    //acnowlede it should be coming from shomewhere in the previours row 
+    if(index == n)
+        return 0;
+
+    
+   //we go thorugh all the elements in index row and pass down to search for answers
+    int min = infinity;int currmin;
+    for(int i=0;i<3;i++){ //MARKED LINE , corrected form i<n to i<3 but still tle as the cases for i<3 (out of i<n) only was long in first case and even setting it correct does not matter
+        if(i != excludedindex){
+        currmin = matrix[index][i] + solver(matrix,n,index+1,i);
+            if(currmin < min)
+                min = currmin;
+            
+            }
+        
+     
+    }
+    
+    return min;
+    
+    
+}
+
+  
+ int minSum(int **matrix, int n) {
+    //we will try to do it with dynamic programming
+    
+  //but n is 10*4 so dp is not possible
+    //so i will try to solve it by dp and bitmasking
+   
+     //pass the index from which we want to start selcting   
+     //aslo pass the index which cannot be selected 
+     //intially set it at infinity
+
+     
+     return solver(matrix,n,0,infinity); //i is the last selected value
+
+    
+
+}

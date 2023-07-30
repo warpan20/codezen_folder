@@ -1,0 +1,19 @@
+int FindFirstRepeatingDigit(string digitpattern) {
+	
+    int bitset = 0;
+    for(int i=0;i<digitpattern.length();i++)
+    {
+        int digit = digitpattern[i] - '0';
+        if(bitset & (1<<digit))
+        {
+            return digit;
+        }
+        
+        bitset = bitset | (1<<digit);
+    }    
+    
+    
+    
+    
+	return -1;
+}

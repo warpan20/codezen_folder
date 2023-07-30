@@ -1,0 +1,112 @@
+
+long long solve(int n)
+{
+	//we need to create a dp to solve this function
+    //the components of the dp are the present node (0 - 3 variabtion)
+    //the node we have to go to (0-3) variations and the no of steps remaining 
+    
+    //max it can be n and min it can be 0 so n+1 possibilities
+    
+    long long dp[4][4][n+1];
+    
+    //populate this dp with zeros
+    for(int i=0;i<4;i++)
+        for(int j=0;j<4;j++)
+            for(int k = 0;k<n+1;k++)
+                dp[i][j][k] = 0;
+                
+    // for dp i j k if i!=j and k = 0 then no of ways is zero
+                
+    // for i=j and k= 0 then answer is 1 
+                
+    //so lets populate these base conditions in the dp
+                
+                
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            
+          if(i==j)
+              dp[i][j][0] = 1;
+            else
+                dp[i][j][0] = 0;
+            
+        }
+    }
+    
+    //now lets populate the whole dp
+    //we first calculate values for k=1 and then for k=2 and so on
+    
+    for(int k=1;k<n+1;k++){ //we have already taken care of k= 0
+                    
+                    //we have to write the recurrance relation here
+                    //we calculate for k=0 all cases then for k=1 when we 
+                    //do for k=1 we use k=0 and so on n we use n-1 for k
+        
+        for(int i=0;i<4;i++)
+            for(int j=0;j<4;j++){
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    //loop to compute the value of dp[i][j][k]
+                    
+                    //we start from i so i cannot be source in the next step
+                    //as we have to go somewhere in the next step
+                    long long ansijk = 0;
+                    
+                    for(int x=0;x<4;x++){
+                            if(x!=i){
+                            ansijk += dp[x][j][k-1]%1000000007;
+                                }
+                    } //end of loop for computing arsijk
+                        
+                        dp[i][j][k] = ansijk%1000000007;
+                    
+          
+                    
+                    
+                } //end of j loop and hence i j loop
+        
+    }//end of k loop
+    
+    
+    //debugger code
+    
+    // for k= 2
+  /*   for(int k= 0;k<=n;k++){
+         
+         cout<<"this is for k = "<<k<<endl;
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+           
+            
+            cout<<dp[i][j][k]<<" ";
+                
+         
+        }
+        cout<<endl;
+    }
+         
+     } */
+    
+    
+    
+        
+        // if(n!=0)   
+             //i have doing modulus of ansijk for computing dp 330 so no need to do
+             //it again
+    
+    
+    
+        return dp[3][3][n];//we have to return the no of ways to return from D to
+        //D after doing n steps 
+         
+    
+    //else
+          //return 0;//anomaly because we have take 3 3 0 as zero for computing all 
+    
+    //the results
+}
